@@ -2,6 +2,9 @@
 
 > Make life better and more meaningful.
 
+[打开线上版本](https://life-advanture.vercel.app) ·
+[查看每日任务](https://github.com/Tmakerchima/lifeAdvanture/actions/workflows/daily-adventure.yml)
+
 Life Adventure 是一个伴随人生的轻量系统。它不是把生活变成效率 KPI，
 而是借用《Designing Your Life》的设计思维，让你每天完成一个可逆的小实验，
 记录真实反馈，并逐渐长出属于自己的方向。
@@ -30,7 +33,8 @@ Life Adventure 是一个伴随人生的轻量系统。它不是把生活变成�
 
 GitHub Actions 每天上海时间 08:05 运行
 `node scripts/update-daily.mjs`，从任务池中生成当天任务并提交。
-也可以在 Actions 页面手动运行 `Daily adventure`。
+也可以在 Actions 页面手动运行 `Daily adventure`。新提交会自动触发
+Vercel 生产部署，因此网页会随当天任务一起更新。
 
 ## 本地运行
 
@@ -43,9 +47,9 @@ npm run dev
 
 ## 部署到 Vercel
 
-将仓库导入 Vercel，保持默认设置即可。项目包含专用的
-`vercel-build` 命令和 `vercel.json`。GitHub Actions 每天提交新任务后，
-Vercel 会自动触发新部署。
+生产环境已连接 `Tmakerchima/lifeAdvanture` 的 `main` 分支：
+<https://life-advanture.vercel.app>。项目包含专用的 `vercel-build`
+命令和 `vercel.json`。
 
 ## 方法来源
 
