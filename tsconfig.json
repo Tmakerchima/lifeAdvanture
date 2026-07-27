@@ -37,6 +37,7 @@
     "worker/**/*",
     "dist/**/*",
     "examples/**/*",
+    "chartDetectorAI/**/*",
     "drizzle.config.ts",
     "vite.config.ts"
   ]

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import daily from "../data/daily.json";
+import PersonalHub from "./components/personal-hub";
 
 type Quest = {
   title: string;
@@ -79,10 +80,13 @@ export default function Home() {
   >([]);
 
   useEffect(() => {
-    setXp(readStored("la-xp", 0));
-    setDone(readStored(`la-done-${daily.date}`, false));
-    setCompass(readStored("la-compass", initialCompass));
-    setLogs(readStored("la-good-time", []));
+    const hydrateLocalProgress = window.setTimeout(() => {
+      setXp(readStored("la-xp", 0));
+      setDone(readStored(`la-done-${daily.date}`, false));
+      setCompass(readStored("la-compass", initialCompass));
+      setLogs(readStored("la-good-time", []));
+    }, 0);
+    return () => window.clearTimeout(hydrateLocalProgress);
   }, []);
 
   const level = Math.floor(xp / 100) + 1;
@@ -131,6 +135,7 @@ export default function Home() {
           LIFE<span> / </span>ADVENTURE
         </a>
         <nav aria-label="页面导航">
+          <a href="#personal">我的 Life OS</a>
           <a href="#quest">今日任务</a>
           <a href="#compass">人生罗盘</a>
           <a href="#odyssey">三条路线</a>
@@ -148,7 +153,7 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="eyebrow">
           <span className="pulse" />
-          PLAYER PROFILE · SHANGHAI · AGE 27
+          LIFE DESIGN · PERSONAL EXPERIMENTS
         </div>
         <h1>
           人生不是答案，
@@ -160,13 +165,13 @@ export default function Home() {
           再用原型一步步走向更好的生活。
         </p>
         <div className="player-class">
-          <span>初始职业</span>
-          <b>侦察型策略家</b>
-          <p>探索欲 × 地图意识 × 团队协作 · 把上海和远方都当成开放世界</p>
+          <span>你的职业</span>
+          <b>由你定义，不由模板决定</b>
+          <p>上班、恋爱、创业、旅行或休息 · 系统会从你的真实生活开始学习</p>
         </div>
         <div className="hero-actions">
-          <a className="button primary" href="#quest">
-            开始今日冒险 <span>→</span>
+          <a className="button primary" href="#personal">
+            建立我的 Life OS <span>→</span>
           </a>
           <a className="button ghost" href="#odyssey">
             查看我的三种人生
@@ -182,11 +187,13 @@ export default function Home() {
         </div>
       </section>
 
+      <PersonalHub />
+
       <section className="quest-section" id="quest">
         <div className="section-heading">
           <div>
-            <p className="kicker">TODAY&apos;S QUEST</p>
-            <h2>今天，只推进一小步</h2>
+            <p className="kicker">PUBLIC DAILY QUEST</p>
+            <h2>还没登录？先试试公共任务</h2>
           </div>
           <p className="date">{dateLabel}</p>
         </div>
@@ -345,8 +352,8 @@ export default function Home() {
           <p><b>02</b>用原型代替豪赌</p>
           <p><b>03</b>把失败记为情报</p>
           <p><b>04</b>每周留一个空白格</p>
-          <p><b>05</b>像打 Dota 一样分工，别把人生打成单排</p>
-          <p><b>06</b>游戏负责恢复与连接，不负责逃离现实</p>
+          <p><b>05</b>别人的热爱只是线索，不是你的标准答案</p>
+          <p><b>06</b>好的系统会认识你，也允许你随时改变</p>
         </div>
       </section>
 
